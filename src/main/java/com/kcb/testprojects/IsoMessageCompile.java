@@ -28,8 +28,10 @@ public class IsoMessageCompile {
 
             ISOMsg isoMsg = new ISOMsg();
             isoMsg.setPackager(packager);
+            //0200 Financial payment request
+            //0100 Authorization Request
+            //0300 File upload Request
             isoMsg.setMTI("0200");
-
             isoMsg.set(3, "000010");
             isoMsg.set(4, "1500");
             isoMsg.set(7, "1206041200");
