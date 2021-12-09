@@ -19,7 +19,8 @@ public class UnpackISOMessage {
     }
 
     private ISOMsg parseISOMessage() throws Exception {
-        String message = "02003220000000808000000010000000001500120604120000000112340001840";
+        // String message = "02003220000000808000000010000000001500120604120000000112340001840";
+        String message = getIsoMessage();
         System.out.printf("Message = %s%n", message);
         try {
             // Load package from resources directory.
@@ -39,11 +40,21 @@ public class UnpackISOMessage {
             System.out.printf("MTI = %s%n", isoMsg.getMTI());
             for (int i = 1; i <= isoMsg.getMaxField(); i++) {
                 if (isoMsg.hasField(i)) {
-                    System.out.printf("Field (%s) = %s%n", i, isoMsg.getString(i));
+                    System.out.printf("Unpacked Field (%s) = %s%n", i, isoMsg.getString(i));
                 }
             }
         } catch (ISOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public String getIsoMessage() {
+        String message = "02003220000000808000000010000000001500120604120000000112340001840";
+        IsoMessageCompile isoMessageCompile = new IsoMessageCompile();
+        try {
+            return isoMessageCompile.buildISOMessage();
+        } catch (Exception exception) {
+            return message;
         }
     }
 }

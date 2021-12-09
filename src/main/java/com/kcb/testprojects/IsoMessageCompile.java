@@ -20,7 +20,7 @@ public class IsoMessageCompile {
         SpringApplication.run(TestProjectsApplication.class, args);
     }
 
-    private String buildISOMessage() throws Exception {
+    public String buildISOMessage() throws Exception {
         try {
             // Load package from resources directory.
             InputStream is = getClass().getResourceAsStream("/fields.xml");
@@ -34,6 +34,8 @@ public class IsoMessageCompile {
             isoMsg.setMTI("0200");
             isoMsg.set(3, "000010");
             isoMsg.set(4, "1500");
+            isoMsg.set(50, "USD");
+            isoMsg.set(18, "32");
             isoMsg.set(7, "1206041200");
             isoMsg.set(11, "000001");
             isoMsg.set(41, "12340001");
